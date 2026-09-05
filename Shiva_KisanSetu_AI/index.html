@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="hi" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan-Setu AI | किसान सेतु AI - Aadhaar Bhulekh & Tehsil Claim Portal</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-glow: rgba(16, 185, 129, 0.4);
+            --primary-hover: #059669;
+            --primary-light: #34d399;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
+            --bg-dark: #090d16;
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --bg-card-hover: rgba(31, 41, 55, 0.85);
+            --bg-input: rgba(15, 23, 42, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-focus: rgba(16, 185, 129, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --danger: #f43f5e;
+            --danger-bg: rgba(244, 63, 94, 0.15);
+            --success-bg: rgba(16, 185, 129, 0.15);
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                radial-gradient(at 85% 25%, rgba(56, 189, 248, 0.12) 0px, transparent 55%),
+                radial-gradient(at 50% 85%, rgba(16, 185, 129, 0.08) 0px, transparent 65%),
+                linear-gradient(180deg, #070a12 0%, #0c1220 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Government / Portal Bar */
+        .top-navbar {
+            background: rgba(10, 15, 26, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 10px 20px;
+        }
+
+        .top-navbar-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .gov-branding {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .gov-emblem {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
+            font-size: 16px;
+        }
+
+        .gov-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gov-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #e2e8f0;
+            text-transform: uppercase;
+        }
+
+        .gov-sub {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .system-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 5px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #34d399;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-subtle);
+            padding: 3px;
+            border-radius: 30px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 5px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Continuous Image Mover Section */
+        .marquee-section {
+            width: 100%;
+            padding: 20px 0 14px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .marquee-header-bar {
+            max-width: 1200px;
+            margin: 0 auto 10px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .marquee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .marquee-tip {
+            font-size: 11px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            user-select: none;
+            /* Smooth side gradient fades */
+            mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 16px;
+            animation: continuousScroll 40s linear infinite;
+            will-change: transform;
+            padding: 6px 0;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes continuousScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .image-card {
+            width: 290px;
+            height: 190px;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: #131b2e;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 14px 30px -8px rgba(16, 185, 129, 0.35);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .image-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.6) 55%, transparent 100%);
+            padding: 24px 14px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            transition: background 0.3s;
+        }
+
+        .img-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: #34d399;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
+        }
+
+        /* Portal Hero Banner */
+        .hero-banner {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px 10px 0;
+            position: relative;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #34d399;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-title span.highlight {
+            background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 680px;
+            margin: 10px auto 0;
+            font-weight: 400;
+        }
+
+        .coverage-pills {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cov-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        /* Layout Grid for Verification Card and Telemetry */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 28px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.45);
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            padding-bottom: 14px;
+        }
+
+        .card-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(56, 189, 248, 0.2) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-subtext {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Form Controls */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .input-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-demos {
+            display: flex;
+            gap: 6px;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .input-field-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            font-size: 16px;
+            color: var(--text-dim);
+            pointer-events: none;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 13px 14px 13px 44px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            outline: none;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .input-field::placeholder {
+            color: #475569;
+        }
+
+        /* Upload & Camera Box */
+        .upload-box {
+            border: 2px dashed rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.45);
+            margin-top: 10px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .upload-box:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(15, 23, 42, 0.65);
+        }
+
+        .upload-icon-circle {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #34d399;
+        }
+
+        .upload-heading {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .upload-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            margin-bottom: 14px;
+        }
+
+        #webcamVideo {
+            width: 100%;
+            max-height: 240px;
+            border-radius: 10px;
+            background: #000;
+            display: none;
+            margin: 12px 0;
+            object-fit: cover;
+            border: 2px solid #34d399;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        #photoCanvas {
+            display: none;
+        }
+
+        .preview-container {
+            display: none;
+            margin: 14px auto;
+            position: relative;
+            max-width: 460px;
+            width: 100%;
+        }
+
+        .scan-overlay-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 0 auto;
+            max-width: 320px;
+            border: 2px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            background: #000;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .scan-laser {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #38bdf8, #34d399, #38bdf8, transparent);
+            box-shadow: 0 0 14px 3px rgba(56, 189, 248, 0.95), 0 0 25px 6px rgba(52, 211, 153, 0.7);
+            animation: laserSweep 1.5s ease-in-out infinite alternate;
+            z-index: 5;
+            display: none;
+        }
+
+        @keyframes laserSweep {
+            0% { top: 0%; opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { top: calc(100% - 3px); opacity: 0.6; }
+        }
+
+        .remove-preview-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(225, 29, 72, 0.85);
+            color: white;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            z-index: 6;
+            transition: all 0.2s;
+        }
+
+        .remove-preview-btn:hover {
+            background: #e11d48;
+            transform: scale(1.1);
+        }
+
+        /* Real-Time AI Analysis Card Styles */
+        .ai-analysis-card {
+            background: rgba(13, 20, 36, 0.92);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 14px;
+            text-align: left;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+        }
+
+        .progress-bar-wrap {
+            width: 100%;
+            height: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ai-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        @media (min-width: 520px) {
+            .ai-metrics-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .ai-metric-item {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 8px 6px;
+            text-align: center;
+        }
+
+        .ai-metric-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .ai-metric-val {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 2px;
+        }
+
+        .heatmap-toggle-btn {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(249, 115, 22, 0.25) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            color: #fca5a5;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .heatmap-toggle-btn:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+            transform: translateY(-1px);
+        }
+
+
+        .upload-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cam-btn {
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cam-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .cam-btn-accent {
+            background: rgba(56, 189, 248, 0.12);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .cam-btn-accent:hover {
+            background: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+        }
+
+        .cam-btn-snap {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+        }
+
+        .status-badge-text {
+            color: var(--primary-light);
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Main Submit Button */
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 22px;
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: rotate(30deg);
+            transition: 0.8s;
+            pointer-events: none;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 12px 28px -4px rgba(16, 185, 129, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:hover::after {
+            left: 100%;
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Voice Button */
+        .btn-voice {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            transition: all 0.2s;
+        }
+
+        .btn-voice:hover {
+            background: #1e40af;
+            transform: translateY(-1px);
+        }
+
+        .sound-wave {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            height: 14px;
+        }
+
+        .sound-wave span {
+            width: 3px;
+            background: #ffffff;
+            border-radius: 2px;
+            animation: soundWave 1.2s infinite ease-in-out;
+        }
+
+        .sound-wave span:nth-child(2) { animation-delay: 0.2s; }
+        .sound-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes soundWave {
+            0%, 100% { height: 4px; }
+            50% { height: 14px; }
+        }
+
+        /* Result Box Styles */
+        #resultDiv {
+            margin-top: 18px;
+        }
+
+        .result-card {
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 15px;
+            animation: fadeIn 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card-approved {
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.18) 0%, rgba(16, 185, 129, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.25);
+        }
+
+        .result-card-rejected {
+            background: linear-gradient(180deg, rgba(239, 68, 68, 0.18) 0%, rgba(239, 68, 68, 0.08) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            box-shadow: 0 10px 30px -5px rgba(239, 68, 68, 0.25);
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .result-meta-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+
+        .result-meta-label {
+            font-size: 10px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .result-meta-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 2px;
+        }
+
+        /* Analytics Metric Cards Grid */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .stat-card.active-filter {
+            border: 2px solid #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            box-shadow: 0 0 25px -4px rgba(56, 189, 248, 0.35);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Table & Database Log Section */
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .table-search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 6px 12px;
+            flex: 1;
+            max-width: 320px;
+        }
+
+        .table-search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+            width: 100%;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 380px;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(10, 15, 26, 0.6);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background: rgba(15, 23, 42, 0.98);
+            color: var(--text-muted);
+            padding: 12px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-approved {
+            background: rgba(16, 185, 129, 0.18);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-rejected {
+            background: rgba(239, 68, 68, 0.18);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Lightbox Modal for Full Image View */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content-wrap {
+            max-width: 800px;
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+            animation: modalScale 0.25s ease-out;
+        }
+
+        @keyframes modalScale {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-footer {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .portal-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 26px; }
+            .analytics-grid { grid-template-columns: 1fr; }
+            .card { padding: 18px; }
+            .image-card { width: 230px; height: 160px; }
+            .top-navbar-inner { flex-direction: column; align-items: flex-start; }
+            .top-nav-right { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Portal Navigation Bar -->
+<header class="top-navbar">
+    <div class="top-navbar-inner">
+        <div class="gov-branding">
+            <div class="gov-emblem">🇮🇳</div>
+            <div class="gov-text">
+                <span class="gov-title" id="txt-gov-title">Government of India | कृषि एवं किसान कल्याण विभाग</span>
+                <span class="gov-sub" id="txt-gov-sub">National Automated Crop Health & Aadhaar Bhulekh Audit Portal</span>
+            </div>
+        </div>
+        <div class="top-nav-right">
+            <div class="system-pill">
+                <div class="pulse-dot"></div>
+                <span id="txt-satellite-status">ISRO Sentinel-2A: Live Link Active</span>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" id="btn-hi" onclick="setLanguage('hi')">हिंदी</button>
+                <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- CONTINUOUS IMAGE MOVER SECTION (TOP BANNER STREAM) -->
+<section class="marquee-section">
+    <div class="marquee-header-bar">
+        <div class="marquee-badge" id="txt-marquee-badge">
+            <span>🛰️</span> LIVE GROUND SURVEILLANCE & FIELD VERIFICATION STREAM
+        </div>
+        <div class="marquee-tip" id="txt-marquee-tip">
+            <span>ℹ️</span> Hover to pause &bull; Click to enlarge photo
+        </div>
+    </div>
+
+    <div class="marquee-container">
+        <!-- Dual track for seamless infinite continuous scroll -->
+        <div class="marquee-track" id="marqueeTrack">
+            <!-- Set 1: Authentic images from the images/ folder -->
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM.jpeg', 'Field Crop Assessment - Lucknow Tehsil')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM.jpeg" alt="Field Crop Verification" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🌱 Ground Truth #1</span>
+                    <span class="img-caption">Farmer Field Inspection & Nutrient Audit</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (1).jpeg', 'Wheat Crop Canopy Assessment')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (1).jpeg" alt="Wheat Crop Canopy" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🌾 Canopy Index #2</span>
+                    <span class="img-caption">Healthy Growth & Chlorophyll Audit</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (2).jpeg', 'Drought & Heat Stress Survey')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (2).jpeg" alt="Drought & Heat Stress" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">☀️ Drought Proof #3</span>
+                    <span class="img-caption">Mohanlalganj Tehsil Khasra Stress Survey</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (3).jpeg', 'Paddy & Water Moisture Survey')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (3).jpeg" alt="Paddy Moisture Survey" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">💧 Soil Moisture #4</span>
+                    <span class="img-caption">Unseasonal Rainfall Damage Evaluation</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.04 PM.jpeg', 'Cadastral Land Boundary Check')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.04 PM.jpeg" alt="Cadastral Boundary" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🚜 Geo-Boundary #5</span>
+                    <span class="img-caption">Bhulekh Cadastral Geo-Fencing Verification</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.01.28 PM (1).jpeg', 'Damage Pattern Detection')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.01.28 PM (1).jpeg" alt="Damage Pattern" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🔍 AI Visual Check #6</span>
+                    <span class="img-caption">Hailstorm & Wind-Lodging Burn Index</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.04.26 PM.jpeg', 'Malihabad Mango & Plantation Audit')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.04.26 PM.jpeg" alt="Plantation Audit" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">📍 Tehsil Grid #7</span>
+                    <span class="img-caption">Malihabad Horticulture & Crop Log</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.04.26 PM (1).jpeg', 'Sentinel-2 Satellite Ground Truth Grounding')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.04.26 PM (1).jpeg" alt="Satellite Ground Truth" loading="eager">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🛰️ Ground Truth #8</span>
+                    <span class="img-caption">Multi-spectral Satellite Calibration</span>
+                </div>
+            </div>
+
+            <!-- Set 2 (Duplicate for Seamless Infinite Marquee Loop) -->
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM.jpeg', 'Field Crop Assessment - Lucknow Tehsil')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM.jpeg" alt="Field Crop Verification" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🌱 Ground Truth #1</span>
+                    <span class="img-caption">Farmer Field Inspection & Nutrient Audit</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (1).jpeg', 'Wheat Crop Canopy Assessment')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (1).jpeg" alt="Wheat Crop Canopy" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🌾 Canopy Index #2</span>
+                    <span class="img-caption">Healthy Growth & Chlorophyll Audit</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (2).jpeg', 'Drought & Heat Stress Survey')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (2).jpeg" alt="Drought & Heat Stress" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">☀️ Drought Proof #3</span>
+                    <span class="img-caption">Mohanlalganj Tehsil Khasra Stress Survey</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.03 PM (3).jpeg', 'Paddy & Water Moisture Survey')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.03 PM (3).jpeg" alt="Paddy Moisture Survey" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">💧 Soil Moisture #4</span>
+                    <span class="img-caption">Unseasonal Rainfall Damage Evaluation</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 8.59.04 PM.jpeg', 'Cadastral Land Boundary Check')">
+                <img src="images/WhatsApp Image 2026-09-01 at 8.59.04 PM.jpeg" alt="Cadastral Boundary" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🚜 Geo-Boundary #5</span>
+                    <span class="img-caption">Bhulekh Cadastral Geo-Fencing Verification</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.01.28 PM (1).jpeg', 'Damage Pattern Detection')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.01.28 PM (1).jpeg" alt="Damage Pattern" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🔍 AI Visual Check #6</span>
+                    <span class="img-caption">Hailstorm & Wind-Lodging Burn Index</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.04.26 PM.jpeg', 'Malihabad Mango & Plantation Audit')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.04.26 PM.jpeg" alt="Plantation Audit" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">📍 Tehsil Grid #7</span>
+                    <span class="img-caption">Malihabad Horticulture & Crop Log</span>
+                </div>
+            </div>
+
+            <div class="image-card" onclick="openLightbox('images/WhatsApp Image 2026-09-01 at 9.04.26 PM (1).jpeg', 'Sentinel-2 Satellite Ground Truth Grounding')">
+                <img src="images/WhatsApp Image 2026-09-01 at 9.04.26 PM (1).jpeg" alt="Satellite Ground Truth" loading="lazy">
+                <div class="image-card-overlay">
+                    <span class="img-tag">🛰️ Ground Truth #8</span>
+                    <span class="img-caption">Multi-spectral Satellite Calibration</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN APPLICATION CONTAINER -->
+<div class="container">
+
+    <!-- Hero Header -->
+    <div class="hero-banner">
+        <div class="hero-tag">
+            <span>✨</span> <span id="txt-hero-tag">Next-Gen ISRO NDVI & Bhulekh Land Cadastre Engine</span>
+        </div>
+        <h1 class="hero-title">
+            🌾 <span class="highlight">Kisan-Setu AI</span>
+            <span style="font-weight: 300; opacity: 0.85;">| किसान सेतु</span>
+        </h1>
+        <p class="hero-subtitle" id="txt-sub">
+            Aadhaar Bhulekh & Tehsil Satellite Crop Loss Claim Portal. Instant AI geo-fencing, satellite damage index auditing, and direct compensation settlement.
+        </p>
+        <div class="coverage-pills">
+            <span class="cov-pill">📍 Mohanlalganj</span>
+            <span class="cov-pill">📍 Bakshi Ka Talab</span>
+            <span class="cov-pill">📍 Sarojini Nagar</span>
+            <span class="cov-pill">📍 Sadar (Lucknow)</span>
+            <span class="cov-pill">📍 Malihabad</span>
+        </div>
+    </div>
+
+    <!-- Claim Verification Card -->
+    <div class="portal-grid">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap">
+                    <div class="card-title-icon">📝</div>
+                    <div>
+                        <div class="card-title" id="txt-claim-form-title">किसान दावा सत्यापन एवं भूलेख ऑडिट</div>
+                        <div class="card-subtext" id="txt-claim-form-sub">Enter Aadhaar or Identity Number and provide live crop damage photo</div>
+                    </div>
+                </div>
+                <div class="system-pill" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
+                    <span>🛡️ NIC 256-bit Secure</span>
+                </div>
+            </div>
+
+            <!-- Aadhaar Input -->
+            <div class="input-group">
+                <div class="input-label-row">
+                    <label class="input-label" id="lbl-aadhaar" for="aadhaarInput">
+                        <span>🆔</span> आधार / पहचान सत्यापन संख्या (12-Digit Identity Number)
+                    </label>
+                    <div class="quick-demos">
+                        <button type="button" class="quick-btn" onclick="fillDemo('982300000137')">Demo 1 (Approve)</button>
+                        <button type="button" class="quick-btn" onclick="fillDemo('881100000241')">Demo 2 (Audit Check)</button>
+                    </div>
+                </div>
+                <div class="input-field-wrapper">
+                    <span class="input-icon">🇮🇳</span>
+                    <input type="text" id="aadhaarInput" class="input-field" placeholder="12-Digit Aadhaar / Farm Registry ID (e.g. 9823 4512 8801)" maxlength="16" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Camera / Image Upload Section -->
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon-circle">📷</div>
+                <div class="upload-heading" id="lbl-photo">🌱 खेत की लाइव फोटो / फसल नुकसान प्रमाण (Crop Damage Proof)</div>
+                <div class="upload-sub" id="lbl-photo-sub">Upload a clear photo or click live via camera for ISRO NDVI satellite cross-verification</div>
+
+                <video id="webcamVideo" autoplay playsinline></video>
+                <canvas id="photoCanvas"></canvas>
+
+                <!-- Enhanced Preview Container with Laser Scanner & Heatmap Toggle -->
+                <div class="preview-container" id="previewContainer">
+                    <div class="scan-overlay-wrap" id="scanOverlayWrap">
+                        <div class="scan-laser" id="scanLaser"></div>
+                        <img id="previewImg" class="preview-img" src="" alt="Proof Preview">
+                        <button type="button" class="remove-preview-btn" onclick="removeSelectedPhoto()" title="Remove photo">&times;</button>
+                    </div>
+
+                    <!-- Interactive View Switcher (Original vs AI Multi-Hazard Heatmap) -->
+                    <div id="heatmapToggleWrap" style="display: none; justify-content: center; gap: 8px; margin-top: 10px;">
+                        <button type="button" class="heatmap-toggle-btn" id="btnToggleHeatmap" onclick="toggleHeatmapView()">
+                            <span>🛰️</span> <span id="lblToggleHeatmap">View Multi-Spectral Calamity Heatmap</span>
+                        </button>
+                    </div>
+
+                    <!-- Real-Time AI Multi-Hazard Diagnostic Panel -->
+                    <div id="aiAnalysisPanel" style="display:none;" class="ai-analysis-card">
+                        <div class="ai-analysis-header">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span id="aiStatusBadge" class="badge badge-approved">⚡ AI CALAMITY SCAN COMPLETE</span>
+                                <span id="aiScanTime" style="font-size: 11px; color: #94a3b8; font-weight: 600;"></span>
+                            </div>
+                            <div style="font-size: 11px; color: #38bdf8; font-family: monospace;" id="aiScanId"></div>
+                        </div>
+
+                        <!-- Calamity Damage & Confidence Bars -->
+                        <div style="margin: 10px 0;">
+                            <div style="display:flex; justify-content:space-between; font-size: 12px; margin-bottom: 4px;">
+                                <span style="color:#cbd5e1; font-weight:600;" id="lblDamageSeverity">Crop Destruction & Loss Index</span>
+                                <span id="aiDamageScoreVal" style="font-weight:800; color:#f87171;">0%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div id="aiDamageScoreBar" class="progress-bar-fill" style="width: 0%; background: linear-gradient(90deg, #34d399, #38bdf8, #f59e0b, #ef4444);"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                            <div style="display:flex; justify-content:space-between; font-size: 11px; margin-bottom: 4px;">
+                                <span style="color:#94a3b8;">Computer Vision Confidence</span>
+                                <span id="aiConfidenceVal" style="font-weight:700; color:#38bdf8;">0%</span>
+                            </div>
+                            <div class="progress-bar-wrap" style="height: 5px;">
+                                <div id="aiConfidenceBar" class="progress-bar-fill" style="width: 0%; background: #38bdf8;"></div>
+                            </div>
+                        </div>
+
+                        <!-- 5-Grid Multi-Calamity Spectral Breakdown -->
+                        <div class="ai-metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));">
+                            <div class="ai-metric-item">
+                                <div class="ai-metric-label">🌊 Flood / Water</div>
+                                <div class="ai-metric-val" id="metricFlood" style="color: #38bdf8;">0%</div>
+                            </div>
+                            <div class="ai-metric-item">
+                                <div class="ai-metric-label">🔥 Fire / Scorch</div>
+                                <div class="ai-metric-val" id="metricScorch" style="color: #fb923c;">0%</div>
+                            </div>
+                            <div class="ai-metric-item">
+                                <div class="ai-metric-label">🌫️ Ashes / Char</div>
+                                <div class="ai-metric-val" id="metricAsh" style="color: #e2e8f0;">0%</div>
+                            </div>
+                            <div class="ai-metric-item">
+                                <div class="ai-metric-label">☀️ Drought Stress</div>
+                                <div class="ai-metric-val" id="metricDrought" style="color: #facc15;">0%</div>
+                            </div>
+                            <div class="ai-metric-item">
+                                <div class="ai-metric-label">🌿 Green Canopy</div>
+                                <div class="ai-metric-val" id="metricGreen" style="color: #34d399;">0%</div>
+                            </div>
+                        </div>
+
+                        <!-- Summary text description -->
+                        <div id="aiAnalysisDesc" style="padding: 8px 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 11px; color: #e2e8f0; line-height: 1.4;">
+                        </div>
+
+                        <!-- Voice Narration for Analysis -->
+                        <div style="display:flex; justify-content:flex-end; margin-top: 8px;">
+                            <button type="button" class="btn-voice" style="padding: 5px 12px; font-size: 11px; margin: 0;" onclick="speakAnalysisSummary()">
+                                <span>🔊</span> <span>Listen AI Assessment</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Calamity Presets for Instant 1-Click Testing -->
+                <div style="margin: 12px 0 8px 0; padding: 10px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px dashed rgba(56, 189, 248, 0.25);">
+                    <div style="font-size: 11px; color: #38bdf8; margin-bottom: 6px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                        <span>⚡</span> <span>1-Click Test Samples (आपदा सैंपल से तुरंत टेस्ट करें):</span>
+                    </div>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                        <button type="button" class="quick-btn" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;" onclick="loadSamplePreset('flood')">🌊 Flood (बाढ़)</button>
+                        <button type="button" class="quick-btn" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.4); color: #fb7185;" onclick="loadSamplePreset('fire')">🔥 Fire (आग)</button>
+                        <button type="button" class="quick-btn" style="background: rgba(203, 213, 225, 0.15); border-color: rgba(203, 213, 225, 0.4); color: #e2e8f0;" onclick="loadSamplePreset('ash')">🌫️ Ashes (राख)</button>
+                        <button type="button" class="quick-btn" style="background: rgba(250, 204, 21, 0.15); border-color: rgba(250, 204, 21, 0.4); color: #facc15;" onclick="loadSamplePreset('drought')">☀️ Drought (सूखा)</button>
+                        <button type="button" class="quick-btn" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #34d399;" onclick="loadSamplePreset('healthy')">🌿 Healthy (हरी फसल)</button>
+                    </div>
+                </div>
+
+                <div class="upload-btns">
+                    <button type="button" class="cam-btn" id="btn-cam-start" onclick="startCamera()">
+                        <span>📷</span> <span id="btn-cam-text">Live Photo Click Karein</span>
+                    </button>
+                    <button type="button" class="cam-btn cam-btn-snap" id="btn-cam-snap" style="display:none;" onclick="capturePhoto()">
+                        <span>📸</span> <span id="btn-snap-text">Capture Now</span>
+                    </button>
+                    <button type="button" class="cam-btn cam-btn-accent" id="btn-gallery" onclick="triggerFileInput()">
+                        <span>📁</span> <span id="btn-gallery-text">Gallery Se Upload</span>
+                    </button>
+                </div>
+
+                <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="handleGalleryUpload(this)">
+                <span id="imgStatus" class="status-badge-text"></span>
+            </div>
+
+            <!-- Verification Action Button -->
+            <button type="button" class="btn-submit" id="btn-submit" onclick="verifyClaim()">
+                <span>⚡</span> <span id="btn-submit-text">दावा AI ऑडिट एवं सत्यापन करें (Verify & Process Claim)</span>
+            </button>
+
+            <!-- Verification Result Container -->
+            <div id="resultDiv"></div>
+        </div>
+    </div>
+
+    <!-- Real-time Analytics Statistics Grid -->
+    <div class="analytics-grid">
+        <div class="stat-card active-filter" id="card-ALL" onclick="filterTable('ALL')">
+            <div class="stat-value" style="color: #60a5fa;" id="statTotal">128</div>
+            <div class="stat-label" id="lbl-card-all">TOTAL CLAIMS (कुल दावे)</div>
+        </div>
+        <div class="stat-card" id="card-APPROVED" onclick="filterTable('APPROVED')">
+            <div class="stat-value" style="color: #34d399;" id="statApproved">102</div>
+            <div class="stat-label" id="lbl-card-app">APPROVED (स्वीकृत)</div>
+        </div>
+        <div class="stat-card" id="card-REJECTED" onclick="filterTable('REJECTED')">
+            <div class="stat-value" style="color: #f87171;" id="statRejected">26</div>
+            <div class="stat-label" id="lbl-card-rej">REJECTED (अस्वीकृत)</div>
+        </div>
+    </div>
+
+    <!-- Tehsil Audit Database Log Card -->
+    <div class="card">
+        <div class="table-toolbar">
+            <div>
+                <h3 style="font-size: 16px; font-weight: 700; color: #fff;" id="lbl-table-heading">
+                    📜 Tehsil Audit Database Log (तहसील ऑडिट डेटाबेस लॉग)
+                </h3>
+                <span id="filterLabel" style="font-size: 12px; color: #38bdf8; font-weight: 600;">
+                    Showing: ALL (128 Records)
+                </span>
+            </div>
+            <div class="table-search-box">
+                <span>🔍</span>
+                <input type="text" id="tableSearchInput" placeholder="Search Aadhaar, Tehsil, Reason..." oninput="handleTableSearch()">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th id="th-1">Identity Tag (पहचान)</th>
+                        <th id="th-2">Tehsil (तहसील)</th>
+                        <th id="th-3">Status (स्थिति)</th>
+                        <th id="th-4">AI Verification Reason (कारण)</th>
+                        <th id="th-5">Action (कार्यवाही)</th>
+                    </tr>
+                </thead>
+                <tbody id="auditTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Lightbox Modal for Full Image View -->
+<div class="modal" id="imageModal" onclick="closeLightbox(event)">
+    <div class="modal-content-wrap" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeLightbox()">&times;</button>
+        <img src="" alt="Enlarged Field Observation" id="modalImg" class="modal-img">
+        <div class="modal-footer">
+            <div>
+                <div style="font-size: 14px; font-weight: 700; color: #fff;" id="modalCaption">Field Assessment</div>
+                <div style="font-size: 11px; color: #94a3b8;" id="modalSub">Kisan-Setu AI High Resolution Surveillance Source</div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <button type="button" class="cam-btn cam-btn-accent" style="padding: 6px 14px; font-size: 12px;" onclick="loadSampleIntoScanner(document.getElementById('modalImg').src, document.getElementById('modalCaption').innerText)">
+                    ⚡ Analyze in AI Engine
+                </button>
+                <span class="badge badge-approved" id="modalBadge">Verified Source</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="portal-footer">
+    <div class="footer-links">
+        <a href="#about" onclick="alert('Kisan-Setu AI: Automated Satellite crop damage claim settlement powered by ISRO Sentinel & Bhulekh UP.'); return false;">About Portal</a>
+        <a href="#bhulekh" onclick="alert('Bhulekh UP cadastral boundary linkage is verified in real-time.'); return false;">UP Bhulekh Linkage</a>
+        <a href="#isro" onclick="alert('ISRO Bhuvan / Sentinel-2 NDVI spectral bands are analyzed for vegetation health.'); return false;">ISRO NDVI Index</a>
+        <a href="#support" onclick="alert('Tehsil Helpdesk: Lucknow / Mohanlalganj / Sarojini Nagar / Malihabad'); return false;">Tehsil Support</a>
+    </div>
+    <p>© 2026 Kisan-Setu AI &bull; Department of Agriculture & Land Revenue &bull; National Informatics Centre (NIC) Standards Compliant</p>
+</footer>
+
+<script>
+    let currentLang = 'hi';
+    let mockData = [];
+    let selectedFile = null;
+    let cameraStream = null;
+    let activeFilter = 'ALL';
+
+    // Real-Time Computer Vision & Image Analysis State
+    let currentOriginalImgSrc = '';
+    let currentHeatmapImgSrc = '';
+    let isShowingHeatmap = false;
+    let latestAnalysis = null;
+
+
+    function initData() {
+        const tehsils = ['Mohanlalganj', 'Bakshi Ka Talab', 'Sarojini Nagar', 'Sadar', 'Malihabad'];
+        const rejReasons = [
+            'Photo Location Mismatch (800m outside Khasra)',
+            'NDVI Satellite Index indicates normal healthy crop',
+            'Duplicate claim detected for same Khasra',
+            'Blurry image - Unable to verify damage'
+        ];
+
+        mockData = [];
+
+        // 102 Approved Claims
+        for (let i = 1; i <= 102; i++) {
+            let num = (982300000000 + i * 137).toString();
+            mockData.push({
+                id: num.substring(0, 4) + 'xxxx' + num.substring(8),
+                tehsil: tehsils[i % tehsils.length],
+                status: 'APPROVED',
+                reason: 'NDVI Satellite Verified (Damage > 65%)',
+                action: 'Payout Disbursed'
+            });
+        }
+
+        // 26 Rejected Claims
+        for (let i = 1; i <= 26; i++) {
+            let num = (781200000000 + i * 219).toString();
+            mockData.push({
+                id: num.substring(0, 4) + 'xxxx' + num.substring(8),
+                tehsil: tehsils[(i + 2) % tehsils.length],
+                status: 'REJECTED',
+                reason: rejReasons[i % rejReasons.length],
+                action: i % 2 === 0 ? 'Allowed (7 Days)' : 'Contact Tehsildar'
+            });
+        }
+
+        mockData.sort(() => Math.random() - 0.5);
+    }
+
+    function renderTable(filter) {
+        activeFilter = filter;
+        const tbody = document.getElementById('auditTableBody');
+        const filterLabel = document.getElementById('filterLabel');
+        const searchVal = (document.getElementById('tableSearchInput')?.value || '').toLowerCase().trim();
+
+        let filtered = mockData.filter(item => {
+            let matchesFilter = (filter === 'ALL' || item.status === filter);
+            let matchesSearch = !searchVal || 
+                item.id.toLowerCase().includes(searchVal) ||
+                item.tehsil.toLowerCase().includes(searchVal) ||
+                item.reason.toLowerCase().includes(searchVal);
+            return matchesFilter && matchesSearch;
+        });
+
+        filterLabel.innerText = `Showing: ${filter} (${filtered.length} Records)`;
+
+        document.getElementById('card-ALL').classList.toggle('active-filter', filter === 'ALL');
+        document.getElementById('card-APPROVED').classList.toggle('active-filter', filter === 'APPROVED');
+        document.getElementById('card-REJECTED').classList.toggle('active-filter', filter === 'REJECTED');
+
+        if (filtered.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:#94a3b8;">No records found matching criteria.</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        filtered.slice(0, 15).forEach(item => {
+            const isApproved = item.status === 'APPROVED';
+            const badgeClass = isApproved ? 'badge-approved' : 'badge-rejected';
+            const statusIcon = isApproved ? '✅' : '❌';
+            const actionPill = isApproved 
+                ? `<span style="color: #34d399; font-weight: 600; font-size: 11px;">✓ ${item.action}</span>` 
+                : `<span style="color: #f87171; font-weight: 600; font-size: 11px;">⚠️ ${item.action}</span>`;
+
+            html += `
+                <tr>
+                    <td style="font-weight: 700; color: #f8fafc; font-family: monospace;">${item.id}</td>
+                    <td style="color: #cbd5e1;">📍 ${item.tehsil}</td>
+                    <td><span class="badge ${badgeClass}">${statusIcon} ${item.status}</span></td>
+                    <td style="font-size: 12px; color: #94a3b8;">${item.reason}</td>
+                    <td>${actionPill}</td>
+                </tr>`;
+        });
+        tbody.innerHTML = html;
+    }
+
+    function filterTable(filter) {
+        renderTable(filter);
+    }
+
+    function handleTableSearch() {
+        renderTable(activeFilter);
+    }
+
+    function fillDemo(num) {
+        document.getElementById('aadhaarInput').value = num;
+        document.getElementById('aadhaarInput').style.borderColor = '#10b981';
+        setTimeout(() => {
+            document.getElementById('aadhaarInput').style.borderColor = '';
+        }, 1500);
+    }
+
+    // Camera & Upload System
+    function startCamera() {
+        const video = document.getElementById('webcamVideo');
+        const snapBtn = document.getElementById('btn-cam-snap');
+        const startBtn = document.getElementById('btn-cam-start');
+
+        if (cameraStream) {
+            stopCamera();
+            return;
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(stream => {
+                cameraStream = stream;
+                video.srcObject = stream;
+                video.style.display = 'block';
+                snapBtn.style.display = 'inline-flex';
+                startBtn.classList.add('cam-btn-accent');
+                startBtn.innerHTML = `<span>⏹️</span> <span>Stop Camera</span>`;
+                document.getElementById('imgStatus').innerText = "📷 Live camera active. Align crop inside viewfinder.";
+            })
+            .catch(err => {
+                // Fallback without constraint
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        cameraStream = stream;
+                        video.srcObject = stream;
+                        video.style.display = 'block';
+                        snapBtn.style.display = 'inline-flex';
+                    })
+                    .catch(e => {
+                        alert("Camera permission denied or camera not found! You can use 'Gallery Se Upload' button.");
+                    });
+            });
+    }
+
+    function stopCamera() {
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraStream = null;
+        }
+        const video = document.getElementById('webcamVideo');
+        video.style.display = 'none';
+        document.getElementById('btn-cam-snap').style.display = 'none';
+        const startBtn = document.getElementById('btn-cam-start');
+        startBtn.classList.remove('cam-btn-accent');
+        startBtn.innerHTML = `<span>📷</span> <span id="btn-cam-text">${currentLang === 'hi' ? 'फोटो क्लिक करें' : 'Click Live Photo'}</span>`;
+    }
+
+    function capturePhoto() {
+        const video = document.getElementById('webcamVideo');
+        const canvas = document.getElementById('photoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(blob => {
+            selectedFile = new File([blob], "live_crop_proof.jpg", { type: "image/jpeg" });
+            const previewUrl = URL.createObjectURL(blob);
+            showPreview(previewUrl, "Live Photo Captured!");
+            stopCamera();
+            // Instantly Analyze After Capture
+            analyzeUploadedImage(selectedFile);
+        }, 'image/jpeg', 0.9);
+    }
+
+    function triggerFileInput() {
+        const fileInput = document.getElementById('fileInput');
+        fileInput.value = '';
+        fileInput.click();
+    }
+
+    function handleGalleryUpload(input) {
+        if (input.files && input.files[0]) {
+            selectedFile = input.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                showPreview(e.target.result, selectedFile.name);
+                // Instantly Analyze After Upload
+                analyzeUploadedImage(selectedFile);
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    }
+
+    // 1-Click Disaster Preset Samples
+    async function loadSamplePreset(presetType) {
+        const presetMap = {
+            'flood': { url: 'images/WhatsApp Image 2026-09-01 at 8.59.03 PM (3).jpeg', label: '🌊 Flood Inundation Sample' },
+            'fire': { url: 'images/WhatsApp Image 2026-09-01 at 9.01.28 PM (1).jpeg', label: '🔥 Active Stubble Fire Sample' },
+            'ash': { url: 'images/WhatsApp Image 2026-09-01 at 9.04.26 PM (1).jpeg', label: '🌫️ Post-Burn Ash & Char Sample' },
+            'drought': { url: 'images/WhatsApp Image 2026-09-01 at 8.59.03 PM (2).jpeg', label: '☀️ Drought Stress Sample' },
+            'healthy': { url: 'images/WhatsApp Image 2026-09-01 at 8.59.03 PM (1).jpeg', label: '🌿 Healthy Wheat Canopy Sample' }
+        };
+
+        const target = presetMap[presetType] || presetMap['flood'];
+        try {
+            const res = await fetch(target.url);
+            if (!res.ok) throw new Error('Could not fetch preset');
+            const blob = await res.blob();
+            selectedFile = new File([blob], `${presetType}_sample.jpg`, { type: "image/jpeg" });
+            
+            showPreview(target.url, target.label);
+            analyzeUploadedImage(selectedFile);
+        } catch (e) {
+            console.error("Failed to load preset:", e);
+            document.getElementById('imgStatus').innerHTML = `<span style="color:#f87171;">⚠️ Error loading sample image.</span>`;
+        }
+    }
+
+    function showPreview(src, label) {
+        currentOriginalImgSrc = src;
+        currentHeatmapImgSrc = '';
+        isShowingHeatmap = false;
+        document.getElementById('previewImg').src = src;
+        document.getElementById('previewContainer').style.display = 'block';
+        document.getElementById('heatmapToggleWrap').style.display = 'none';
+        document.getElementById('aiAnalysisPanel').style.display = 'none';
+        document.getElementById('imgStatus').innerHTML = `✅ <b>${currentLang === 'hi' ? 'फोटो संलग्न:' : 'Image Attached:'}</b> ${label}`;
+    }
+
+    function removeSelectedPhoto() {
+        selectedFile = null;
+        latestAnalysis = null;
+        currentOriginalImgSrc = '';
+        currentHeatmapImgSrc = '';
+        isShowingHeatmap = false;
+        document.getElementById('previewImg').src = '';
+        document.getElementById('previewContainer').style.display = 'none';
+        document.getElementById('heatmapToggleWrap').style.display = 'none';
+        document.getElementById('aiAnalysisPanel').style.display = 'none';
+        document.getElementById('scanLaser').style.display = 'none';
+        document.getElementById('fileInput').value = '';
+        document.getElementById('imgStatus').innerText = '';
+    }
+
+    // Real-Time Computer Vision & Image Analysis Engine
+    async function analyzeUploadedImage(fileOrBlob) {
+        if (!fileOrBlob) return;
+
+        const scanLaser = document.getElementById('scanLaser');
+        const imgStatus = document.getElementById('imgStatus');
+        const aiAnalysisPanel = document.getElementById('aiAnalysisPanel');
+        const heatmapToggleWrap = document.getElementById('heatmapToggleWrap');
+
+        // Start High-Tech Scanning Laser Animation
+        scanLaser.style.display = 'block';
+        imgStatus.innerHTML = `
+            <span style="color: #38bdf8; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+                <span style="animation: pulseGlow 0.8s infinite;">🛰️</span>
+                ${currentLang === 'hi' ? 'AI मल्टी-कैलेमिटी स्कैन (बाढ़, आग, राख, सूखा) जारी है...' : 'AI Multi-Calamity Scan (Flood, Fire, Ashes, Drought) in progress...'}
+            </span>`;
+
+        const formData = new FormData();
+        const fname = fileOrBlob.name || "field_crop_image.jpg";
+        formData.append('farm_image', fileOrBlob, fname);
+
+        try {
+            const res = await fetch('/analyze-image', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!res.ok) throw new Error('Analysis API Error');
+            const data = await res.json();
+            latestAnalysis = data;
+
+            // Stop laser scan animation
+            scanLaser.style.display = 'none';
+
+            if (data.annotated_heatmap) {
+                currentHeatmapImgSrc = data.annotated_heatmap;
+                heatmapToggleWrap.style.display = 'flex';
+                document.getElementById('lblToggleHeatmap').innerText = currentLang === 'hi' ? 'AI आपदा हीटमैप देखें' : 'View Multi-Spectral Heatmap';
+            }
+
+            // Populate Diagnostic Details
+            aiAnalysisPanel.style.display = 'block';
+
+            const statusBadge = document.getElementById('aiStatusBadge');
+            const cIcon = data.calamity_icon || "🌿";
+            const cName = (data.primary_calamity || "HEALTHY").replace(/_/g, " ");
+
+            if (data.is_damaged) {
+                statusBadge.className = 'badge badge-approved';
+                statusBadge.innerHTML = `${cIcon} ${cName} VERIFIED (${data.damage_percent}% LOSS)`;
+            } else {
+                statusBadge.className = 'badge badge-rejected';
+                statusBadge.innerHTML = `${cIcon} ${currentLang === 'hi' ? 'सुरक्षित / हरी फसल (NO DISASTER DETECTED)' : 'HEALTHY / NO DISASTER LOSS'}`;
+            }
+
+            const scanMs = data.metrics?.processing_time_ms || 12;
+            document.getElementById('aiScanTime').innerText = `⚡ ${scanMs} ms`;
+            document.getElementById('aiScanId').innerText = data.scan_id || 'SCAN-REALTIME';
+
+            // Calamity Damage Score Bar
+            const damageScore = data.damage_percent || data.burn_score || 0;
+            document.getElementById('aiDamageScoreVal').innerText = `${damageScore}%`;
+            document.getElementById('aiDamageScoreBar').style.width = `${Math.min(100, Math.max(0, damageScore))}%`;
+
+            // Confidence Bar
+            const confidence = data.confidence_percent || data.burn_confidence || 85;
+            document.getElementById('aiConfidenceVal').innerText = `${confidence.toFixed(1)}%`;
+            document.getElementById('aiConfidenceBar').style.width = `${Math.min(100, Math.max(0, confidence))}%`;
+
+            // 5-Grid Multi-Calamity Breakdown
+            const m = data.metrics || {};
+            document.getElementById('metricFlood').innerText = `${m.flood_fraction ?? 0}%`;
+            document.getElementById('metricScorch').innerText = `${m.fire_scorch_fraction ?? 0}%`;
+            const totalAshChar = ((m.soot_char_fraction || 0) + (m.ash_residue_fraction || 0)).toFixed(1);
+            document.getElementById('metricAsh').innerText = `${totalAshChar}%`;
+            document.getElementById('metricDrought').innerText = `${m.drought_desiccation_fraction ?? 0}%`;
+            document.getElementById('metricGreen').innerText = `${m.green_canopy_fraction ?? 0}%`;
+
+            // Summary Text
+            const desc = currentLang === 'hi' ? data.description_hi : data.description_en;
+            document.getElementById('aiAnalysisDesc').innerHTML = `
+                <div style="font-weight: 700; color: #38bdf8; margin-bottom: 2px;">
+                    🤖 ${cIcon} ${data.classification || 'Crop Calamity Audit'}:
+                </div>
+                <div>${desc || 'AI multi-calamity scan completed successfully.'}</div>`;
+
+            imgStatus.innerHTML = `✅ <b>${currentLang === 'hi' ? 'AI स्कैन पूर्ण:' : 'AI Scan Complete:'}</b> <span style="color:#34d399;">${cIcon} ${data.classification}</span>`;
+
+        } catch (err) {
+            console.error(err);
+            scanLaser.style.display = 'none';
+            imgStatus.innerHTML = `<span style="color:#f87171;">⚠️ ${currentLang === 'hi' ? 'इमेज विश्लेषण में त्रुटि आई।' : 'Image analysis failed.'}</span>`;
+        }
+    }
+
+    // Toggle between Original and Heatmap Overlay
+    function toggleHeatmapView() {
+        const previewImg = document.getElementById('previewImg');
+        const lbl = document.getElementById('lblToggleHeatmap');
+
+        if (!currentHeatmapImgSrc) return;
+
+        if (isShowingHeatmap) {
+            previewImg.src = currentOriginalImgSrc;
+            lbl.innerText = currentLang === 'hi' ? 'AI आपदा हीटमैप देखें' : 'View Multi-Spectral Calamity Heatmap';
+            isShowingHeatmap = false;
+        } else {
+            previewImg.src = currentHeatmapImgSrc;
+            lbl.innerText = currentLang === 'hi' ? 'मूल फोटो देखें' : 'View Original Photo';
+            isShowingHeatmap = true;
+        }
+    }
+
+    // Load authentic image from continuous mover into scanner
+    async function loadSampleIntoScanner(imgUrl, caption) {
+        try {
+            closeLightbox();
+            const res = await fetch(imgUrl);
+            const blob = await res.blob();
+            selectedFile = new File([blob], "surveillance_sample.jpg", { type: "image/jpeg" });
+
+            showPreview(imgUrl, caption || "Surveillance Stream Sample");
+            
+            // Scroll smoothly to the upload area
+            const uploadBox = document.getElementById('uploadBox');
+            if (uploadBox) {
+                uploadBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Immediately run AI analysis
+            analyzeUploadedImage(selectedFile);
+        } catch (e) {
+            console.error("Failed to load sample image into scanner:", e);
+        }
+    }
+
+    function speakAnalysisSummary() {
+        if (!latestAnalysis) return;
+        const text = currentLang === 'hi' 
+            ? `${latestAnalysis.description_hi || 'फसल विश्लेषण पूर्ण हुआ।'}`
+            : `${latestAnalysis.description_en || 'Crop analysis complete.'}`;
+        speakText(text);
+    }
+
+    // Audio narration with SpeechSynthesis
+    function speakText(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.lang = currentLang === 'hi' ? 'hi-IN' : 'en-US';
+            msg.rate = 0.95;
+            msg.pitch = 1.0;
+            window.speechSynthesis.speak(msg);
+        }
+    }
+
+    // Modal / Lightbox for continuous mover images
+    function openLightbox(imgSrc, title) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
+        modalImg.src = imgSrc;
+        modalCaption.innerText = title;
+        modal.style.display = 'flex';
+    }
+
+    function closeLightbox(e) {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Language toggle
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.getElementById('btn-hi').classList.toggle('active', lang === 'hi');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+        if (lang === 'en') {
+            document.getElementById('txt-gov-title').innerText = "Government of India | Ministry of Agriculture & Farmers Welfare";
+            document.getElementById('txt-gov-sub').innerText = "National Multi-Disaster Crop Health & Aadhaar Bhulekh Audit Portal";
+            document.getElementById('txt-satellite-status').innerText = "ISRO Sentinel-2A: Live Link Active";
+            document.getElementById('txt-marquee-badge').innerHTML = "<span>🛰️</span> MULTI-CALAMITY SURVEILLANCE & DAMAGE AUDIT STREAM";
+            document.getElementById('txt-marquee-tip').innerHTML = "<span>ℹ️</span> Hover to pause &bull; Click to enlarge photo";
+            document.getElementById('txt-hero-tag').innerText = "Next-Gen Multi-Disaster AI (Flood, Fire, Ashes, Drought, Hail)";
+            document.getElementById('txt-sub').innerText = "Aadhaar Bhulekh & Multi-Disaster Crop Loss Claim Portal. Instant AI geo-fencing, multi-spectral damage auditing (Flood 🌊, Fire 🔥, Ashes 🌫️, Drought ☀️), and direct DBT relief compensation.";
+            document.getElementById('txt-claim-form-title').innerText = "Farmer Disaster Claim & Bhulekh Audit";
+            document.getElementById('txt-claim-form-sub').innerText = "Enter Aadhaar Number and upload live field calamity photo";
+            document.getElementById('lbl-aadhaar').innerHTML = "<span>🆔</span> Aadhaar / Identity Verification Number";
+            document.getElementById('lbl-photo').innerText = "🌱 Crop Damage Photo Proof (Multi-Hazard Verification)";
+            document.getElementById('lbl-photo-sub').innerText = "Upload flood, fire, ash, or drought photo for AI multi-spectral cross-verification";
+            document.getElementById('btn-cam-text').innerText = "Click Live Photo";
+            document.getElementById('btn-gallery-text').innerText = "Upload from Gallery";
+            document.getElementById('btn-submit-text').innerText = "⚡ Verify & Process Calamity Claim with AI";
+            document.getElementById('lbl-card-all').innerText = "TOTAL CLAIMS";
+            document.getElementById('lbl-card-app').innerText = "APPROVED";
+            document.getElementById('lbl-card-rej').innerText = "REJECTED";
+            document.getElementById('lbl-table-heading').innerText = "📜 Tehsil Audit Database Log";
+            document.getElementById('th-1').innerText = "Identity Tag";
+            document.getElementById('th-2').innerText = "Tehsil";
+            document.getElementById('th-3').innerText = "Status";
+            document.getElementById('th-4').innerText = "AI Verification Reason";
+            document.getElementById('th-5').innerText = "Action";
+        } else {
+            document.getElementById('txt-gov-title').innerText = "भारत सरकार | कृषि एवं किसान कल्याण विभाग";
+            document.getElementById('txt-gov-sub').innerText = "राष्ट्रीय स्वचालित फसल आपदा (बाढ़, आग, राख, सूखा) एवं भूलेख ऑडिट पोर्टल";
+            document.getElementById('txt-satellite-status').innerText = "ISRO Sentinel-2A: लाइव लिंक सक्रिय";
+            document.getElementById('txt-marquee-badge').innerHTML = "<span>🛰️</span> बहु-आपदा खेत सत्यापन एवं उपग्रह ग्राउंड-ट्रुथ लाइव स्ट्रीम";
+            document.getElementById('txt-marquee-tip').innerHTML = "<span>ℹ️</span> रोकने के लिए माउस लाएं &bull; बड़ी फोटो देखने के लिए क्लिक करें";
+            document.getElementById('txt-hero-tag').innerText = "मल्टी-डिज़ास्टर AI इंजन (बाढ़ 🌊, आग 🔥, राख 🌫️, सूखा ☀️)";
+            document.getElementById('txt-sub').innerText = "आधार भूलेख एवं बहु-आपदा फसल नुकसान दावा पोर्टल। आर्टिफिशियल इंटेलिजेंस, सैटेलाइट इंडेक्स एवं त्वरित मुआवजा सत्यापन।";
+            document.getElementById('txt-claim-form-title').innerText = "किसान आपदा दावा सत्यापन एवं भूलेख ऑडिट";
+            document.getElementById('txt-claim-form-sub').innerText = "आधार संख्या दर्ज करें एवं प्रभावित खेत की लाइव फोटो अपलोड करें";
+            document.getElementById('lbl-aadhaar').innerHTML = "<span>🆔</span> आधार / पहचान सत्यापन संख्या (12-Digit Identity Number)";
+            document.getElementById('lbl-photo').innerText = "🌱 खेत की लाइव फोटो / आपदा नुकसान प्रमाण (Flood/Burn/Ash/Drought)";
+            document.getElementById('lbl-photo-sub').innerText = "स्पष्ट फोटो अपलोड करें या कैमरे से लाइव क्लिक करें ताकि उपग्रह डेटा से मिलान हो सके";
+            document.getElementById('btn-cam-text').innerText = "फोटो क्लिक करें";
+            document.getElementById('btn-gallery-text').innerText = "गैलरी से अपलोड करें";
+            document.getElementById('btn-submit-text').innerText = "⚡ दावा AI ऑडिट एवं सत्यापन करें (Verify & Process)";
+            document.getElementById('lbl-card-all').innerText = "कुल दावे (TOTAL CLAIMS)";
+            document.getElementById('lbl-card-app').innerText = "स्वीकृत (APPROVED)";
+            document.getElementById('lbl-card-rej').innerText = "अस्वीकृत (REJECTED)";
+            document.getElementById('lbl-table-heading').innerText = "📜 तहसील ऑडिट डेटाबेस लॉग (Audit Log)";
+            document.getElementById('th-1').innerText = "पहचान (Identity Tag)";
+            document.getElementById('th-2').innerText = "तहसील (Tehsil)";
+            document.getElementById('th-3').innerText = "स्थिति (Status)";
+            document.getElementById('th-4').innerText = "कारण (AI Verification Reason)";
+            document.getElementById('th-5').innerText = "कार्यवाही (Action)";
+        }
+
+        if (latestAnalysis) {
+            const desc = currentLang === 'hi' ? latestAnalysis.description_hi : latestAnalysis.description_en;
+            const cIcon = latestAnalysis.calamity_icon || "🤖";
+            document.getElementById('aiAnalysisDesc').innerHTML = `
+                <div style="font-weight: 700; color: #38bdf8; margin-bottom: 2px;">
+                    ${cIcon} ${latestAnalysis.classification || 'Crop Calamity Audit'}:
+                </div>
+                <div>${desc || 'AI scan completed successfully.'}</div>`;
+        }
+    }
+
+    // Claim Verification Flow
+    async function verifyClaim() {
+        const aadhaar = document.getElementById('aadhaarInput').value.trim();
+        const resultDiv = document.getElementById('resultDiv');
+        const submitBtn = document.getElementById('btn-submit');
+
+        if (!aadhaar) {
+            alert(currentLang === 'hi' ? "कृपया 12 अंकों का आधार या पहचान संख्या दर्ज करें!" : "Please enter a valid Aadhaar or Identity number!");
+            document.getElementById('aadhaarInput').focus();
+            return;
+        }
+
+        // Loading State
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        resultDiv.innerHTML = `
+            <div style="text-align: center; padding: 25px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px dashed rgba(56, 189, 248, 0.4); margin-top: 15px;">
+                <div style="font-size: 24px; animation: pulseGlow 1s infinite;">🛰️</div>
+                <div style="font-weight: 700; color: #38bdf8; margin-top: 8px;">Connecting to ISRO Bhuvan & Bhulekh Land Cadastre...</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Auditing GPS Geo-Fencing, Multi-Calamity Spectral Indices (Flood/Fire/Ashes/Drought), and Aadhaar Registry</div>
+            </div>`;
+
+        const formData = new FormData();
+        formData.append('id_input', aadhaar);
+        if (selectedFile) {
+            formData.append('farm_image', selectedFile);
+        }
+
+        try {
+            const res = await fetch('/verify-claim', { method: 'POST', body: formData });
+            const data = await res.json();
+
+            let speechTextContent = "";
+
+            if (data.status === 'APPROVED') {
+                const damageVal = data.damage_percent || "75%";
+                const payoutVal = data.payout_amount || "₹15,000";
+                const khasra = data.khasra_no || "142/1";
+                const tehsil = data.tehsil || "Mohanlalganj";
+                const calIcon = data.calamity_icon || "🌾";
+                const calType = data.calamity_type || "CROP DAMAGE";
+
+                speechTextContent = currentLang === 'hi' 
+                    ? `बधाई हो! आपका ${calType} दावा स्वीकार कर लिया गया है। क्षति दर ${damageVal}, स्वीकृत मुआवजा ${payoutVal} रुपये है।` 
+                    : `Congratulations! Your ${calType} claim is approved. Damage: ${damageVal}, Payout: ${payoutVal}.`;
+
+                resultDiv.innerHTML = `
+                    <div class="result-card result-card-approved">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <div class="result-title" style="color: #34d399;">
+                                    <span>${calIcon}</span> CLAIM APPROVED (दावा स्वीकृत - ${calType})
+                                </div>
+                                <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">
+                                    Bhulekh Khasra Match Confirmed & AI Computer Vision Disaster Damage Verified.
+                                </div>
+                            </div>
+                            <span class="badge badge-approved">Direct Payout Disbursed</span>
+                        </div>
+
+                        <div class="result-meta-grid">
+                            <div class="result-meta-item">
+                                <div class="result-meta-label">Disaster Category</div>
+                                <div class="result-meta-val" style="color: #fb923c;">${calIcon} ${calType}</div>
+                            </div>
+                            <div class="result-meta-item">
+                                <div class="result-meta-label">Damage Severity</div>
+                                <div class="result-meta-val" style="color: #38bdf8;">${damageVal}</div>
+                            </div>
+                            <div class="result-meta-item">
+                                <div class="result-meta-label">Approved SDRF Relief</div>
+                                <div class="result-meta-val" style="color: #34d399; font-size: 16px;">${payoutVal}</div>
+                            </div>
+                            <div class="result-meta-item">
+                                <div class="result-meta-label">Khasra / Khata</div>
+                                <div class="result-meta-val">${khasra}</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 8px;">
+                            <button type="button" class="btn-voice" onclick="speakText('${speechTextContent}')">
+                                <span>🔊</span> <span id="btn-audio-text">${currentLang === 'hi' ? 'ऑडियो सुनिए' : 'Listen Audio'}</span>
+                                <div class="sound-wave"><span></span><span></span><span></span></div>
+                            </button>
+                            <span style="font-size: 11px; color: #34d399;">✓ Direct DBT Account Transfer Initiated</span>
+                        </div>
+                    </div>`;
+            } else {
+                const reason = data.reason_en || "Verification Failed";
+                const canReapply = data.can_reapply !== false;
+
+                speechTextContent = currentLang === 'hi' 
+                    ? `आपका दावा अस्वीकृत हुआ। कारण: ${reason}` 
+                    : `Claim Rejected due to ${reason}`;
+
+                resultDiv.innerHTML = `
+                    <div class="result-card result-card-rejected">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                            <div>
+                                <div class="result-title" style="color: #f87171;">
+                                    <span>❌</span> CLAIM REJECTED (दावा अस्वीकृत)
+                                </div>
+                                <div style="font-size: 12px; color: #fca5a5; margin-top: 4px;">
+                                    <b>Reason:</b> ${reason}
+                                </div>
+                            </div>
+                            <span class="badge badge-rejected">${canReapply ? 'Re-upload Allowed' : 'Contact Tehsildar'}</span>
+                        </div>
+
+                        <div style="margin-top: 14px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; color: #cbd5e1;">
+                            ${data.reapply_msg || 'कृपया स्पष्ट खेत की फोटो के साथ दोबारा प्रयास करें या स्थानीय लेखपाल / तहसीलदार कार्यालय से संपर्क करें।'}
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 12px;">
+                            <button type="button" class="btn-voice" onclick="speakText('${speechTextContent}')" style="background: #e11d48;">
+                                <span>🔊</span> <span>${currentLang === 'hi' ? 'ऑडियो सुनिए' : 'Listen Audio'}</span>
+                                <div class="sound-wave"><span></span><span></span><span></span></div>
+                            </button>
+                            <span style="font-size: 11px; color: #f87171;">Audit Log Updated</span>
+                        </div>
+                    </div>`;
+            }
+
+            speakText(speechTextContent);
+
+            // Update Log & Metrics
+            const maskedId = aadhaar.length >= 8 ? aadhaar.substring(0, 4) + 'xxxx' + aadhaar.substring(aadhaar.length - 4) : aadhaar;
+            mockData.unshift({
+                id: maskedId,
+                tehsil: data.tehsil || 'Mohanlalganj',
+                status: data.status,
+                reason: data.reason_en || (data.status === 'APPROVED' ? `${data.calamity_type || 'Disaster'} Verified` : 'No Damage / Record Issue'),
+                action: data.status === 'APPROVED' ? 'Payout Disbursed' : 'Re-upload Allowed'
+            });
+
+            document.getElementById('statTotal').innerText = mockData.length;
+            document.getElementById('statApproved').innerText = mockData.filter(d => d.status === 'APPROVED').length;
+            document.getElementById('statRejected').innerText = mockData.filter(d => d.status === 'REJECTED').length;
+
+            renderTable(activeFilter);
+
+        } catch (e) {
+            console.error(e);
+            resultDiv.innerHTML = `
+                <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid var(--danger); padding: 14px; border-radius: 10px; margin-top: 15px; text-align: center;">
+                    <div style="color: #f87171; font-weight: 700;">⚠️ Server Connection Offline</div>
+                    <p style="font-size: 12px; color: #cbd5e1; margin-top: 4px;">Run FastAPI server using <code>uvicorn main:app --reload</code> in your terminal.</p>
+                </div>`;
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+        }
+    }
+
+    // Window initialize & Drag-and-drop listeners
+    window.onload = function() {
+        initData();
+        renderTable('ALL');
+
+        // Setup Drag & Drop on upload box
+        const uploadBox = document.getElementById('uploadBox');
+        if (uploadBox) {
+            uploadBox.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '#10b981';
+                uploadBox.style.background = 'rgba(16, 185, 129, 0.08)';
+            });
+
+            uploadBox.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '';
+                uploadBox.style.background = '';
+            });
+
+            uploadBox.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '';
+                uploadBox.style.background = '';
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    selectedFile = e.dataTransfer.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        showPreview(evt.target.result, selectedFile.name);
+                        analyzeUploadedImage(selectedFile);
+                    };
+                    reader.readAsDataURL(selectedFile);
+                }
+            });
+        }
+    };
+</script>
+</body>
+</html>
